@@ -1,0 +1,27 @@
+= This is a work in progress. Use at your own risk!
+---
+
+= Moonshine Logstash and Grok
+---
+
+{logstash}[http://logstash.net/] is a tool for managing events and logs.
+You can use it to collect logs, parse them, and store them for later use
+(like, for searching). Speaking of searching, logstash comes with a web
+interface for searching and drilling into all of your logs.
+
+It is fully free and fully open source. The license is Apache 2.0,
+meaning you are pretty much free to use it however you want in whatever way.
+
+=== A plugin for Moonshine[http://github.com/railsmachine/moonshine]
+
+This Moonshine plugin allows you to easily integrate Logstash into your
+server ecosystem.
+
+
+=== Instructions
+
+* <tt>rails plugin install git://github.com/Blue-Dog-Archolite/moonshine_logstash.git</tt>
+* Coming soon
+
+=== Basic Configuration
+* Coming Soon
