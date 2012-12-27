@@ -1,0 +1,25 @@
+input {
+  file {
+    path => <%= Array(lookupvar('logstash::config::log_path'))%>
+    type => "rails_log"
+  }
+  redis {
+      password => "<%= lookupvar('logstash::config::redis_password')%>"
+      host =>  "<%= lookupvar('logstash::config::redis_host')%>"
+      type => "redis-input"
+      # these settings should match the output of the agent
+      data_type => "list"
+      key => "<%= lookupvar('logstash::config::redis_key')%>"
+  }
+}
+
+output {
+  elasticsearch {
+    embedded => true
+  }
+
+  stdout {
+    debug => <%= lookupvar('logstash::config::redis_debug')%>
+    debug_format => "json"
+  }
+}

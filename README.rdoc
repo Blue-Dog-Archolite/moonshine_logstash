@@ -15,13 +15,42 @@ meaning you are pretty much free to use it however you want in whatever way.
 === A plugin for Moonshine[http://github.com/railsmachine/moonshine]
 
 This Moonshine plugin allows you to easily integrate Logstash into your
-server ecosystem.
+server ecosystem. This is intended to be used with redis as the transport.
+
+This plugin uses openjdk-6-jdk as the java base. You can specify your java package by using
+:logstash:
+  :java_runtime:
+    - openjdk-6-jdk
+  :config:
+    :redis_password: password
+    :redis_username: username
+    :redis_host server_name_or_ip
+    :redis_key: my_key
+    :log_path: #this will take an array if you don't want to use wildcdards
+     - /home/rails/apps/*/current/log/*.log
+    :redis_debug: false
+
+Make sure you include 
+* <tt>recipe :redis</tt> {Redis}[https://github.com/railsmachine/moonshine_redis]
 
 
 === Instructions
-
 * <tt>rails plugin install git://github.com/Blue-Dog-Archolite/moonshine_logstash.git</tt>
-* Coming soon
 
 === Basic Configuration
-* Coming Soon
+* Add :shipper and / or :indexer to your server configuration. Use :combined if the server is both a indexer and a shipper
+  <tt>server 'my-indexer-server', :app, :god, :indexer, :web, :db, :primary => true</tt>
+  <tt>server 'my-shipping-server', :app, :god, :shipper, :web, :db, :primary => true</tt>
+  <tt>server 'my-indexer-shipping-server', :app, :god, :combined, :web, :db, :primary => true</tt>
+
+=== TODO
+* Start as service
+
+=== Instance OF:
+  # only run parts of a recipe on testing:
+  on_stage 'testing' do
+    file '/etc/motd', :ensure => :file, :content => "Welcome to the TEST server!"
+  end
+
+* start parser and web only on parser servers
+* start shipper on shipper servers

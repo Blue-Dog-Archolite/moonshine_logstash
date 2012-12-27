@@ -1,0 +1,16 @@
+input {
+  redis {
+      password => "<%= lookupvar('logstash::config::redis_password')%>"
+      host =>  "<%= lookupvar('logstash::config::redis_host')%>"
+      type => "redis-input"
+      # these settings should match the output of the agent
+      data_type => "list"
+      key => "<%= lookupvar('logstash::config::redis_key')%>"
+  }
+}
+
+output {
+  elasticsearch {
+    embedded => true
+  }
+}
