@@ -42,15 +42,3 @@ Make sure you include
   <tt>server 'my-indexer-server', :app, :god, :indexer, :web, :db, :primary => true</tt>
   <tt>server 'my-shipping-server', :app, :god, :shipper, :web, :db, :primary => true</tt>
   <tt>server 'my-indexer-shipping-server', :app, :god, :combined, :web, :db, :primary => true</tt>
-
-=== TODO
-* Start as service
-
-=== Instance OF:
-  # only run parts of a recipe on testing:
-  on_stage 'testing' do
-    file '/etc/motd', :ensure => :file, :content => "Welcome to the TEST server!"
-  end
-
-* start parser and web only on parser servers
-* start shipper on shipper servers
