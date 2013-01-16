@@ -1,3 +1,4 @@
+
 = This is a work in progress. Use at your own risk!
 ---
 
@@ -33,12 +34,23 @@ This plugin uses openjdk-6-jdk as the java base. You can specify your java packa
 Make sure you include 
 * <tt>recipe :redis</tt> {Redis}[https://github.com/railsmachine/moonshine_redis]
 
+This plugin uses openjdk-6-jdk as the java base. You can specify your java package by using
+:logstash:
+  :java_runtime:
+    - openjdk-6-jdk
+  :config:
+    :redis_password: password
+    :redis_username: username
+    :redis_host server_name_or_ip
+    :redis_key: my_key
+    :log_path: #this will take an array if you don't want to use wildcdards
+     - /home/rails/apps/*/current/log/*.log
+    :redis_debug: false
+
+Make sure you include 
+* <tt>recipe :redis</tt> {Redis}[https://github.com/railsmachine/moonshine_redis]
 
 === Instructions
 * <tt>rails plugin install git://github.com/Blue-Dog-Archolite/moonshine_logstash.git</tt>
 
 === Basic Configuration
-* Add :shipper and / or :indexer to your server configuration. Use :combined if the server is both a indexer and a shipper
-  <tt>server 'my-indexer-server', :app, :god, :indexer, :web, :db, :primary => true</tt>
-  <tt>server 'my-shipping-server', :app, :god, :shipper, :web, :db, :primary => true</tt>
-  <tt>server 'my-indexer-shipping-server', :app, :god, :combined, :web, :db, :primary => true</tt>

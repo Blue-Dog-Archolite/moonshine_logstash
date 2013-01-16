@@ -12,5 +12,6 @@ input {
 output {
   elasticsearch {
     embedded => true
+    index => "/usr/local/share/logstash/data/logstash-%{+YYYY.MM.dd}"
   }
 }
